@@ -31,7 +31,7 @@ randomIndex();
 
 function randomIndex()
 {
-    $files = file('color.csv');
+    $files = file('../color.csv');
     $len = count($files) - 1;
     $randomIndex = rand(0, $len);
     $csv = $files[$randomIndex];
@@ -55,8 +55,8 @@ function randomIndex()
 
     ?>
 
-    <h2>'. end($_SESSION['note'])[1]. '</h2>
-    <p>'. end($_SESSION['note'])[2]. '</p>
+    <h2>Tes</h2>
+    <p>Tes</p>
     <form action='../home.php' method='post'>
         <input type='submit' value='Home'>
     </form>

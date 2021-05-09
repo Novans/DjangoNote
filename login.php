@@ -10,6 +10,37 @@
     </style>
 </head>
 
+<?php
+include_once("control.php");
+
+$model = new control();
+$textAlert = "";
+
+if (isset($_POST["username"]) and isset($_POST["password"])) {
+
+    if ($model->checkUsername($_POST["username"]) == 0) {
+        session_start();
+
+        $model->setData($_POST["username"], $_POST["password"]);
+        $_SESSION["username"] = $_POST["username"];
+        $_SESSION["password"] = $_POST["password"];
+        header("Location: home.php");
+        exit;
+    } else {
+        if (($model->getPassword($_POST["username"])->fetch_row()[0]) != ($_POST["password"])) {
+            $textAlert = "Username dan Kata Sandi tidak tepat";
+        } else {
+            session_start();
+
+            $_SESSION["username"] = $_POST["username"];
+            $_SESSION["password"] = $_POST["password"];
+            header("Location: home.php");
+            exit;
+        }
+    }
+}
+?>
+
 <body>
     <form class="box" action="login.php" method="post">
         <h1>Login</h1>
