@@ -48,9 +48,14 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
 
         //error_reporting(0);
 
-        session_start();
+        $Judul = $_SESSION["noteData"][$_POST['indexNote']][0];
 
-        echo '<h3>File dengan judul ' . $_SESSION["printJudul"] . ' berhasil dihapus</h3>
+        include_once("control.php");
+        $model = new control();
+
+        $model->deleteNoteData($_SESSION["username"], $Judul);
+
+        echo '<h3>File dengan judul ' . $Judul . ' berhasil dihapus</h3>
     <form action="home.php">
         <input type="submit" value="Home">
     </form>';

@@ -6,9 +6,11 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
     echo "Maaf, anda belum login";
 } else {
 
-    $Judul = $_POST["judul"];
-    $Isi = $_POST["printIsi"];
+    $Judul = $_SESSION["noteData"][$_GET['indexNote']][0];
+    $Isi = $_SESSION["noteData"][$_GET["indexNote"]][1];
+    $_SESSION["oldJudul"] = $Judul;
 
+    echo "Nan";
 
     $newPage = "note.php";
     $fh = fopen($newPage, 'w');
@@ -20,16 +22,19 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open: ' . $_POST["judul"] . '</title>
+    <title>Open: ' . $Judul . '</title>
 </head>
-<body>
-<?php echo $_POST["judul"]; ?>
-    <form action="../builder.php" method="post">
-        <textarea name="judul" id="judul" cols="30" rows="2">' . $_POST["judul"] . '</textarea>
+<body>' .
+        $Judul .
+        '<form action="update.php" method="post">
+        <textarea name="judul" id="judul" cols="30" rows="2">' . $Judul . '</textarea>
         <br>
         <textarea name="isi" id="isi" cols="30" rows="10">' . $Isi . '</textarea>
-        <input type="submit" value="Home">
+        <br>
+        <input type="submit" name="Update" value="Update">
     </form>
+    <br>
+    <a href="home.php">Home</a>
 </body>
 </html>';
 

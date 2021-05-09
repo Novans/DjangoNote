@@ -164,37 +164,40 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
 
                         $model = new control();
 
-
-
-                        $_SESSION["listJudul"] = $model->getJudul($_SESSION["username"]);
+                        $_SESSION["noteData"] = $model->getNoteData($_SESSION["username"]);
 
                         if (file_exists('note.php')) {
                             unlink('note.php');
                         }
 
-                        if (isset($_SESSION["listJudul"])) {
-                            for ($i = 0; $i < count($_SESSION["listJudul"]); $i++) {
-                                if (!is_null($_SESSION["listJudul"])) {
+                        if (isset($_SESSION["noteData"])) {
+                            for ($i = 0; $i < count($_SESSION["noteData"]); $i++) {
+                                if (!is_null($_SESSION["noteData"])) {
                                     echo "
 
                             <div class=\"card\">
                                 <div class=\"card-body\">
                                     <h5 class=\"card-title\">";
-                                    $judul = $_SESSION["listJudul"][$i][0];
+
+                                    echo $_SESSION["noteData"][$i][0];
 
                                     echo "</h5>
-            
+                                    
                                     <nav class=\"nav nav-pil\">
                                         <li class=\"nav-item\" style=\"margin-right: 2%;\">
                                             <form action=\"read.php\">
                                                 <input class=\"btn btn-primary\" type=\"submit\" value=\"Lihat\">
-                                                <input type=\"hidden\" id=\"judul\" name=\"judul\" value=\"\$judul\">
+                                                <input type=\"hidden\" id=\"indexNote\" name=\"indexNote\" value=\"";
+                                    echo $i;
+                                    echo "\" >
                                             </form>
                                         </li>
                                         <li class=\"nav-item\">
                                             <form action=\"delete.php\" method=\"post\">
                                                 <input class=\"btn btn-primary\" type=\"submit\" value=\"Hapus\">
-                                                <input type=\"hidden\" id=\"judul\" name=\"judul\" value=\"\$judul\">
+                                                <input type=\"hidden\" id=\"indexNote\" name=\"indexNote\" value=\"";
+                                    echo $i;
+                                    echo "\" >
                                             </form>
                                         </li>
                                     </nav>
@@ -205,36 +208,6 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
                                 }
                             }
                         }
-
-                        // if (isset($_SESSION["dbId"])) {
-                        //     for ($i = 0; $i < count($_SESSION["dbId"]); $i++) {
-                        //         if (!is_null($_SESSION["dbId"])) {
-                        //             echo "
-
-                        //         <div class=\"card\">
-                        //             <div class=\"card-body\">
-                        //                 <h5 class=\"card-title\">\$_SESSION[\"dbJudul\"]</h5>
-
-                        //                 <nav class=\"nav nav-pil\">
-                        //                     <li class=\"nav-item\" style=\"margin-right: 2%;\">
-                        //                         <form action=\"note" . "/" . "note\$_SESSION[\"dbId\"].php\">
-                        //                             <input class=\"btn btn-primary\" type=\"submit\" value=\"Lihat\">
-                        //                         </form>
-                        //                     </li>
-                        //                     <li class=\"nav-item\">
-                        //                         <form action=\"delete.php\" method=\"post\">
-                        //                             <input type=\"hidden\" name=\"index\" value=\"\$_SESSION[\"dbId\"]\">
-                        //                             <input class=\"btn btn-primary\" type=\"submit\" value=\"Hapus\">
-                        //                         </form>
-                        //                     </li>
-                        //                 </nav>
-                        //             </div>
-                        //         </div>
-
-                        //     ";
-                        //         }
-                        //     }
-                        // }
                     }
                 }
             }

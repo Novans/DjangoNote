@@ -12,15 +12,9 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
     include_once("control.php");
     $model = new control();
 
-    if ($model->checkJudul($_SESSION['username'], $_SESSION['inJudul']) == 0) {
-        $model->addNote($_SESSION['username'], $_SESSION['inJudul'], $_SESSION['inIsi']);
+    $model->updateNoteData($_SESSION['username'], $_SESSION["oldJudul"], $_SESSION['inJudul'], $_SESSION['inIsi']);
 
-        echo "<script>alert('Note berhasil dibuat');
+    echo "<script>alert('Note berhasil di update');
     window.location.replace('home.php');
     </script>";
-    } else {
-        echo "<script>alert('Note sudah ada');
-    window.location.replace('add.php');
-    </script>";
-    }
 }

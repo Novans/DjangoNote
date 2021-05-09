@@ -62,9 +62,19 @@ class control
         return $result;
     }
 
-    public function getJudul($username)
+    public function getNoteData($username)
     {
-        $result = $this->database->query("SELECT judul FROM $this->tablenote WHERE username='$username'");
+        $result = $this->database->query("SELECT judul, isi FROM $this->tablenote WHERE username='$username'");
         return mysqli_fetch_all($result);
+    }
+
+    public function updateNoteData($username, $judulLama, $judul, $isi)
+    {
+        $this->database->query("UPDATE $this->tablenote SET judul='$judul', isi='$isi' WHERE username='$username' and judul='$judulLama'") or die(mysqli_error($this->database));
+    }
+
+    public function deleteNoteData($username, $judul)
+    {
+        $this->database->query("DELETE FROM $this->tablenote WHERE username='$username' and judul='$judul'") or die(mysqli_error($this->database));
     }
 }
