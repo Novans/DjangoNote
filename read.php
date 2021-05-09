@@ -6,14 +6,9 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
     echo "Maaf, anda belum login";
 } else {
 
-<<<<<<< HEAD
     $Judul = $_SESSION["noteData"][$_GET['indexNote']][0];
     $Isi = $_SESSION["noteData"][$_GET["indexNote"]][1];
     $_SESSION["oldJudul"] = $Judul;
-=======
-    $Judul = $_SESSION["printJudul"];
-    $Isi = $_SESSION["printIsi"];
->>>>>>> 66972c2ffb524f18c017009838e1d4896a8f6631
 
     echo "Nan";
 
@@ -29,15 +24,9 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open: ' . $Judul . '</title>
 </head>
-<<<<<<< HEAD
 <body>' .
         $Judul .
         '<form action="update.php" method="post">
-=======
-<body>
-<?php echo $_POST["judul"]; ?>
-    <form action="builder.php" method="post">
->>>>>>> 66972c2ffb524f18c017009838e1d4896a8f6631
         <textarea name="judul" id="judul" cols="30" rows="2">' . $Judul . '</textarea>
         <br>
         <textarea name="isi" id="isi" cols="30" rows="10">' . $Isi . '</textarea>
