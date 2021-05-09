@@ -5,7 +5,8 @@ session_start();
 if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
     echo "Maaf, anda belum login";
 } else {
-
+    //$_SESSION["printJudul"] = "ini judul";
+    //$_SESSION["printIsi"] = "ini isi";
     $Judul = $_SESSION["printJudul"];
     $Isi = $_SESSION["printIsi"];
 
@@ -23,7 +24,6 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
     <title>Open: ' . $Judul . '</title>
 </head>
 <body>
-<?php echo $_POST["judul"]; ?>
     <form action="builder.php" method="post">
         <textarea name="judul" id="judul" cols="30" rows="2">' . $Judul . '</textarea>
         <br>
