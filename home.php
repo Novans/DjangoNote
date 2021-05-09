@@ -144,7 +144,7 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
                 array_push($colorsName, $values);
             }
 
-            
+
 
             function randomIndex()
             {
@@ -164,7 +164,7 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
 
                         $model = new control();
 
-                        
+
 
                         $_SESSION["listJudul"] = $model->getJudul($_SESSION["username"]);
 
@@ -180,7 +180,7 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
                             <div class=\"card\">
                                 <div class=\"card-body\">
                                     <h5 class=\"card-title\">";
-                                    echo $_SESSION["listJudul"][$i][0];
+                                    $judul = $_SESSION["listJudul"][$i][0];
 
                                     echo "</h5>
             
@@ -188,12 +188,13 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
                                         <li class=\"nav-item\" style=\"margin-right: 2%;\">
                                             <form action=\"read.php\">
                                                 <input class=\"btn btn-primary\" type=\"submit\" value=\"Lihat\">
+                                                <input type=\"hidden\" id=\"judul\" name=\"judul\" value=\"\$judul\">
                                             </form>
                                         </li>
                                         <li class=\"nav-item\">
                                             <form action=\"delete.php\" method=\"post\">
-                                                <input type=\"hidden\" name=\"index\" value=\"\$_SESSION[\"dbJudul\"][$i][0]\">
                                                 <input class=\"btn btn-primary\" type=\"submit\" value=\"Hapus\">
+                                                <input type=\"hidden\" id=\"judul\" name=\"judul\" value=\"\$judul\">
                                             </form>
                                         </li>
                                     </nav>
