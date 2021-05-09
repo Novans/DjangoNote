@@ -1,83 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <title>Home Tab</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background: #34495e;
-        }
+<?php
+session_start();
+if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
+    echo "Maaf, anda belum login";
+} else {
 
-        td {
-            width: 900px;
-        }
+?>
 
-        .content-table {
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 0.9em;
-            min-width: 400px;
-            border-radius: 5px 5px 0 0;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-        }
+    <head>
+        <title>Home Tab</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="Description" content="Enter your description here" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+        <style>
+            body {
+                font-family: sans-serif;
+                background: #34495e;
+            }
 
-        .content-table thead tr {
-            background-color: #009879;
-            color: #ffffff;
-            text-align: left;
-            font-weight: bold;
-        }
+            td {
+                width: 900px;
+            }
 
-        .content-table th,
-        .content-table td {
-            padding: 12px 15px;
-        }
+            .content-table {
+                border-collapse: collapse;
+                margin: 25px 0;
+                font-size: 0.9em;
+                min-width: 400px;
+                border-radius: 5px 5px 0 0;
+                overflow: hidden;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            }
 
-        .content-table tbody tr {
-            border-bottom: 1px solid #dddddd;
-        }
+            .content-table thead tr {
+                background-color: #009879;
+                color: #ffffff;
+                text-align: left;
+                font-weight: bold;
+            }
 
-        .content-table tbody tr:nth-of-type(odd) {
-            background-color: #f3f3f3;
-        }
+            .content-table th,
+            .content-table td {
+                padding: 12px 15px;
+            }
 
-        .content-table tbody tr:last-of-type {
-            border-bottom: 2px solid #009879;
-        }
+            .content-table tbody tr {
+                border-bottom: 1px solid #dddddd;
+            }
 
-        input[type="submit"] {
-            border: 0;
-            background: white;
-            display: block;
-            margin: 20px auto;
-            text-align: center;
-            border: 2px solid #009879;
-            padding: 5px 10px;
-            outline: none;
-            color: black;
-            border-radius: 24px;
-            transition: 0.25s;
-            cursor: pointer;
-        }
-    </style>
-</head>
+            .content-table tbody tr:nth-of-type(odd) {
+                background-color: #f3f3f3;
+            }
 
-<body>
-    <table class="content-table">
-        <thead>
-            <tr>
-                <th>Judul</th>
-                <th>Opsi</th>
-            </tr>
-        </thead>
-        <tbody>
+            .content-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+            }
+
+            input[type="submit"] {
+                border: 0;
+                background: white;
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+                border: 2px solid #009879;
+                padding: 5px 10px;
+                outline: none;
+                color: black;
+                border-radius: 24px;
+                transition: 0.25s;
+                cursor: pointer;
+            }
+
+            .topnav {
+                background-color: #333;
+                overflow: hidden;
+            }
+
+            /* Style the links inside the navigation bar */
+            .topnav a {
+                font-family: sans-serif;
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+            /* Change the color of links on hover */
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            /* Add a color to the active/current link */
+            .topnav a.active {
+                background-color: #04AA6D;
+                color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="topnav">
+            <a class="active" href="index.php">Home</a>
+            <a href="add.php"> Add Note</a>
+            <a href="profile.php">Profile</a>
+            <a href="logout.php">Logout</a>
+        </div>
+        <nav class="nav nav-pills justify-content-end">
+            <li class="nav-item">
+                <form action="add.php" method="post">
+                    <input class="btn btn-primary" type="submit" value="Tambah">
+                </form>
+            </li>
+        </nav>
+
+        <div class="card-columns">
             <?php
             error_reporting(0);
             session_start();
 
-            include_once("control.php");
+            include("control.php");
             session_start();
 
             $model = new control();
@@ -110,59 +159,89 @@
                         randomIndex();
                     } else {
 
-            ?>
+                        error_reporting(0);
+                        session_start();
 
-                        <body style="background-color:<?php echo $data[1] ?>">
-                <?php
-                    }
-                } else {
-                    randomIndex();
-                };
-                // now do whatever you want with $data, which is one random row of your CSV
-            };
+                        $model = new control();
 
-            /*
-        Keterangan index pada variabel $_SESSION["note"]:
-        0 = nomor index, ini cuman dipake sebagai id
-        1 = judul
-        2 = isi
-        */
+                        $_SESSION["dbJudul"] = $model->getJudul($_SESSION["username"]);
 
-            $count = $_SESSION["count"];
-            if (isset($_SESSION["note"])) {
-                foreach ($_SESSION["note"] as $key => $value) {
-                    if (!is_null($value[1]) && isset($value[1]) && $value[3]) {
-                        echo "<tr>
-                        <td>
-                        $value[1]
-                    </td>
-                    <td>
-                        <form action=\"note" . "/" . "note$value[0].php\">
-                            <input type=\"submit\" value=\"Lihat\">
-                        </form>
-                        <form action=\"delete.php\" method=\"post\">
-                            <input type=\"hidden\" name=\"index\" value=\"$value[0]\">
-                            <input type=\"submit\" value=\"Hapus\">
-                        </form>
-                    </td>
-                    <tr>";
+                        if (file_exists('note.php')) {
+                            unlink('note.php');
+                        }
+
+                        if (isset($_SESSION["dbJudul"])) {
+                            for ($i = 0; $i < count($_SESSION["dbJudul"]); $i++) {
+                                if (!is_null($_SESSION["dbJudul"])) {
+                                    echo "
+
+                            <div class=\"card\">
+                                <div class=\"card-body\">
+                                    <h5 class=\"card-title\">";
+                                    echo $_SESSION["dbJudul"][$i][0];
+
+                                    echo "</h5>
+            
+                                    <nav class=\"nav nav-pil\">
+                                        <li class=\"nav-item\" style=\"margin-right: 2%;\">
+                                            <form action=\"note" . "/" . "note\$_SESSION[\"dbJudul\"][$i][0].php\">
+                                                <input class=\"btn btn-primary\" type=\"submit\" value=\"Lihat\">
+                                            </form>
+                                        </li>
+                                        <li class=\"nav-item\">
+                                            <form action=\"delete.php\" method=\"post\">
+                                                <input type=\"hidden\" name=\"index\" value=\"\$_SESSION[\"dbJudul\"][$i][0]\">
+                                                <input class=\"btn btn-primary\" type=\"submit\" value=\"Hapus\">
+                                            </form>
+                                        </li>
+                                    </nav>
+                                </div>
+                            </div>
+                                
+                        ";
+                                }
+                            }
+                        }
+
+                        // if (isset($_SESSION["dbId"])) {
+                        //     for ($i = 0; $i < count($_SESSION["dbId"]); $i++) {
+                        //         if (!is_null($_SESSION["dbId"])) {
+                        //             echo "
+
+                        //         <div class=\"card\">
+                        //             <div class=\"card-body\">
+                        //                 <h5 class=\"card-title\">\$_SESSION[\"dbJudul\"]</h5>
+
+                        //                 <nav class=\"nav nav-pil\">
+                        //                     <li class=\"nav-item\" style=\"margin-right: 2%;\">
+                        //                         <form action=\"note" . "/" . "note\$_SESSION[\"dbId\"].php\">
+                        //                             <input class=\"btn btn-primary\" type=\"submit\" value=\"Lihat\">
+                        //                         </form>
+                        //                     </li>
+                        //                     <li class=\"nav-item\">
+                        //                         <form action=\"delete.php\" method=\"post\">
+                        //                             <input type=\"hidden\" name=\"index\" value=\"\$_SESSION[\"dbId\"]\">
+                        //                             <input class=\"btn btn-primary\" type=\"submit\" value=\"Hapus\">
+                        //                         </form>
+                        //                     </li>
+                        //                 </nav>
+                        //             </div>
+                        //         </div>
+
+                        //     ";
+                        //         }
+                        //     }
+                        // }
                     }
                 }
-            } else {
-                $_SESSION["note"] = array();
             }
-                ?>
-        </tbody>
+            ?>
+        </div>
 
-    </table>
+    </body>
 
-    <form action="add.php" method="post">
-        <input type="submit" value="Tambah">
-    </form>
-    <form action="profile.php" method="post">
-        <input type="submit" value="Profil">
-    </form>
-
-</body>
+<?php
+}
+?>
 
 </html>

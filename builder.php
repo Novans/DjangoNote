@@ -1,93 +1,24 @@
 <?php
 
 session_start();
-$count = $_SESSION["count"]++;
 
-$newJudul = $_POST["judul"];
-$newIsi = $_POST["isi"];
-//$index = count($_SESSION["note"]);
-$index = $count;
-array_push($_SESSION["note"], array($index, $newJudul, $newIsi, true));
+if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
+    echo "Maaf, anda belum login";
+} else {
 
-$newPage = "note/note$index.php";
-$fh = fopen($newPage, 'w');
+    $_SESSION['inJudul'] = $_POST['judul'];
+    $_SESSION['inIsi'] = $_POST['isi'];
 
-/*
-Keterangan index pada variabel $_SESSION["note"]:
-0 = nomor index, ini cuman dipake sebagai id
-1 = judul
-2 = isi
-*/
+    include_once("control.php");
+    $model = new control();
 
-//ini kode html yang di file baru
-$php =
-"<!DOCTYPE html>
-<html lang=\"en\">
-<head>
-    <meta charset='UTF-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Open: '. end(\$_SESSION['note'])[1]. '</title>
-</head>
-<body>
+    if ($model->checkJudul($_SESSION['username'], $_SESSION['inJudul']) == 0) {
+        $model->addNote($_SESSION['username'], $_SESSION['inJudul'], $_SESSION['inIsi']);
 
-<?php
-include_once('../control.php');
-session_start();
-
-\$model = new control();
-
-\$excludedColors = array();
-\$getExcludedColor = \$model->getExcludedColors(\$_SESSION['username']);
-foreach (\$getExcludedColor as \$value) {
-    array_push(\$excludedColors, \$value);
-}
-\$colorsName = array();
-foreach (\$excludedColors as \$values) {
-    if (str_contains(\$values, 'Muda')) {
-        \$values = str_replace('Muda', ' Muda', \$values);
-    }
-    array_push(\$colorsName, \$values);
-}
-
-randomIndex();
-
-function randomIndex()
-{
-    \$files = file('../color.csv');
-    \$len = count(\$files) - 1;
-    \$randomIndex = rand(0, \$len);
-    \$csv = \$files[\$randomIndex];
-    \$data = str_getcsv(\$csv);
-    global \$colorsName;
-    if (!str_contains(\$data[0], 'Warna')) {
-        if (in_array(\$data[0], \$colorsName)) {
-            randomIndex();
-        } else {
-
-?>
-
-            <body style='background-color:<?php echo \$data[1] ?>'>
-    <?php
-        }
+        header("location: home.php");
     } else {
-        randomIndex();
-    };
-};
-
-
-    ?>
-
-    <h2>". end($_SESSION['note'])[1]. "</h2>
-    <p>". end($_SESSION['note'])[2]. "</p>
-    <form action='../home.php' method='post'>
-        <input type='submit' value='Home'>
-    </form>
-</body>
-</html>";
-
-fwrite($fh, $php);
-fclose($fh);
-header("location: home.php");
-?>
-
+        echo "<script>alert('Note sudah ada');
+    window.location.replace('add.php');
+    </script>";
+    }
+}

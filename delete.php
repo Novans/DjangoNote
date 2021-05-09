@@ -1,64 +1,65 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-<head>
-    <meta charset="utf-8">
-    <title>Delete form</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background: #34495e;
-        }
+<?php
+session_start();
+if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
+    echo "Maaf, anda belum login";
+} else {
 
-        input[type="submit"] {
-            border: 0;
-            background: white;
-            display: block;
-            margin: 20px auto;
-            text-align: center;
-            border: 2px solid #009879;
-            padding: 5px 10px;
-            outline: none;
-            color: black;
-            border-radius: 24px;
-            transition: 0.25s;
-            cursor: pointer;
-        }
+?>
 
-        h3 {
-            display: block;
-            font-size: 1.17em;
-            text-align: center;
-            font-weight: bold;
-            color: Tomato;
-        }
-    </style>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>Delete form</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                background: #34495e;
+            }
 
-<body>
-    <?php
+            input[type="submit"] {
+                border: 0;
+                background: white;
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+                border: 2px solid #009879;
+                padding: 5px 10px;
+                outline: none;
+                color: black;
+                border-radius: 24px;
+                transition: 0.25s;
+                cursor: pointer;
+            }
 
-    //error_reporting(0);
+            h3 {
+                display: block;
+                font-size: 1.17em;
+                text-align: center;
+                font-weight: bold;
+                color: Tomato;
+            }
+        </style>
+    </head>
 
-    session_start();
+    <body>
+        <?php
 
-    $index = $_POST["index"];
+        //error_reporting(0);
 
-    /*
-Keterangan index pada variabel $_SESSION["note"]:
-0 = nomor index, ini cuman dipake sebagai id
-1 = judul
-2 = isi
-*/
+        session_start();
 
-    echo '<h3>File dengan judul ' . $_SESSION["note"][$index + 1][1] . ' berhasil dihapus</h3>
+        echo '<h3>File dengan judul ' . $_SESSION["printJudul"] . ' berhasil dihapus</h3>
     <form action="home.php">
         <input type="submit" value="Home">
     </form>';
+        ?>
+    </body>
 
-    $_SESSION["note"][$index + 1][3] = false;
-    unlink('note/note' . $index . '.php');
-    ?>
-</body>
+<?php
+}
+
+?>
 
 </html>

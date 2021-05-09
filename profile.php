@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-<head>
-    <meta charset="utf-8">
-    <title>Profile</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
 <?php
 include_once("control.php");
 session_start();
@@ -43,6 +37,160 @@ function randomIndex()
 
 ?>
 
+<head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: #34495e;
+        }
+
+        input,
+        select,
+        textarea {
+            color: #ffff;
+        }
+
+        .box {
+            width: 300px;
+            height: 550px;
+            padding: 40px;
+            position: absolute;
+            bottom: 0%;
+            margin-top: 1.8%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #333;
+            text-align: center;
+        }
+
+        .box1 input[type="submit"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #2ecc71;
+            padding: 14px 40px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        .box1 {
+            width: 300px;
+            padding: 40px;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #333;
+            text-align: center;
+        }
+
+        .box h1 {
+            color: white;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .box input[type="text"],
+        .box input[type="password"] {
+            border-radius: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding: 14px 10px;
+            width: 200px;
+            outline: none;
+            border-radius: 24px;
+            transition: 0.25s;
+        }
+
+        .box input[type="submit"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #2ecc71;
+            padding: 14px 40px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        .topnav {
+            font-family: sans-serif;
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        /* Style the links inside the navigation bar */
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        /* Change the color of links on hover */
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Add a color to the active/current link */
+        .topnav a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        @media screen and (max-width: 600px) {
+            .box {
+                width: 200px;
+                height: 81%;
+                padding: 40px;
+                position: absolute;
+                bottom: 0%;
+                margin-top: 1.8%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #333;
+                text-align: center;
+            }
+
+            .box input[type="submit"] {
+                border: 0;
+                background: none;
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+                border: 1px solid #2ecc71;
+                padding: 10px 30px;
+                outline: none;
+                color: black;
+                border-radius: 20px;
+                transition: 0.25s;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+
             <body style="background-color:<?php echo $data[1] ?>">
     <?php
         }
@@ -56,6 +204,12 @@ function randomIndex()
     ?>
 
     <body>
+        <div class="topnav">
+            <a class="active" href="index.php">Home</a>
+            <a href="add.php"> Add Note</a>
+            <a href="profile.php">Profile</a>
+            <a>Logout</a>
+        </div>
         <div class="box">
             <form method="post">
                 <img src="assets/profile-user.png" alt="Profile" width="120px">
