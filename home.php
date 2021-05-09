@@ -108,7 +108,7 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
 
     <body>
         <div class="topnav">
-            <a class="active" href="index.php">Home</a>
+            <a class="active" href="home.php">Home</a>
             <a href="add.php"> Add Note</a>
             <a href="profile.php">Profile</a>
             <a href="logout.php">Logout</a>
@@ -144,7 +144,7 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
                 array_push($colorsName, $values);
             }
 
-            randomIndex();
+            
 
             function randomIndex()
             {
@@ -164,27 +164,29 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
 
                         $model = new control();
 
-                        $_SESSION["dbJudul"] = $model->getJudul($_SESSION["username"]);
+                        
+
+                        $_SESSION["listJudul"] = $model->getJudul($_SESSION["username"]);
 
                         if (file_exists('note.php')) {
                             unlink('note.php');
                         }
 
-                        if (isset($_SESSION["dbJudul"])) {
-                            for ($i = 0; $i < count($_SESSION["dbJudul"]); $i++) {
-                                if (!is_null($_SESSION["dbJudul"])) {
+                        if (isset($_SESSION["listJudul"])) {
+                            for ($i = 0; $i < count($_SESSION["listJudul"]); $i++) {
+                                if (!is_null($_SESSION["listJudul"])) {
                                     echo "
 
                             <div class=\"card\">
                                 <div class=\"card-body\">
                                     <h5 class=\"card-title\">";
-                                    echo $_SESSION["dbJudul"][$i][0];
+                                    echo $_SESSION["listJudul"][$i][0];
 
                                     echo "</h5>
             
                                     <nav class=\"nav nav-pil\">
                                         <li class=\"nav-item\" style=\"margin-right: 2%;\">
-                                            <form action=\"note" . "/" . "note\$_SESSION[\"dbJudul\"][$i][0].php\">
+                                            <form action=\"read.php\">
                                                 <input class=\"btn btn-primary\" type=\"submit\" value=\"Lihat\">
                                             </form>
                                         </li>
@@ -235,6 +237,8 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
                     }
                 }
             }
+
+            randomIndex();
             ?>
         </div>
 

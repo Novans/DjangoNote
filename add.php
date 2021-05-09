@@ -11,7 +11,6 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
 
     <?php
     include_once("control.php");
-    session_start();
 
     $model = new control();
 
@@ -27,8 +26,6 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
         }
         array_push($colorsName, $values);
     }
-
-    randomIndex();
 
     function randomIndex()
     {
@@ -249,6 +246,7 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
         // now do whatever you want with $data, which is one random row of your CSV
     };
 
+    randomIndex();
 
             ?>
 
@@ -256,7 +254,7 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
                 <a class="active" href="index.php">Home</a>
                 <a href="add.php"> Add Note</a>
                 <a href="profile.php">Profile</a>
-                <a>Logout</a>
+                <a href="logout.php">Logout</a>
             </div>
 
             <div class="box">

@@ -2,6 +2,10 @@
 
 session_start();
 
+if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
+    echo "Maaf, anda belum login";
+} else {
+
 $Judul = $_POST["printJudul"];
 $Isi = $_POST["printIsi"];
 
@@ -31,5 +35,5 @@ $php =
 fwrite($fh, $php);
 fclose($fh);
 header("location: note.php");
-?>
 
+}
