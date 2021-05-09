@@ -8,6 +8,6 @@ class koneksi
 
     public function __construct()
     {
-        $this->mysqli =  mysqli_connect("localhost", "root", "hamburger123", "filkomnote");
+        $this->mysqli =  mysqli_connect("localhost", "root", "reditya02", "filkomnote");
     }
 }

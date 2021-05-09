@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php echo $_POST["judul"]; ?>
-    <form action="../builder.php" method="post">
+    <form action="builder.php" method="post">
         <textarea name="judul" id="judul" cols="30" rows="2"></textarea>
         <br>
         <textarea name="isi" id="isi" cols="30" rows="10"></textarea>

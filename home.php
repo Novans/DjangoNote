@@ -206,35 +206,6 @@ if (empty($_SESSION["username"]) and empty($_SESSION["password"])) {
                             }
                         }
 
-                        // if (isset($_SESSION["dbId"])) {
-                        //     for ($i = 0; $i < count($_SESSION["dbId"]); $i++) {
-                        //         if (!is_null($_SESSION["dbId"])) {
-                        //             echo "
-
-                        //         <div class=\"card\">
-                        //             <div class=\"card-body\">
-                        //                 <h5 class=\"card-title\">\$_SESSION[\"dbJudul\"]</h5>
-
-                        //                 <nav class=\"nav nav-pil\">
-                        //                     <li class=\"nav-item\" style=\"margin-right: 2%;\">
-                        //                         <form action=\"note" . "/" . "note\$_SESSION[\"dbId\"].php\">
-                        //                             <input class=\"btn btn-primary\" type=\"submit\" value=\"Lihat\">
-                        //                         </form>
-                        //                     </li>
-                        //                     <li class=\"nav-item\">
-                        //                         <form action=\"delete.php\" method=\"post\">
-                        //                             <input type=\"hidden\" name=\"index\" value=\"\$_SESSION[\"dbId\"]\">
-                        //                             <input class=\"btn btn-primary\" type=\"submit\" value=\"Hapus\">
-                        //                         </form>
-                        //                     </li>
-                        //                 </nav>
-                        //             </div>
-                        //         </div>
-
-                        //     ";
-                        //         }
-                        //     }
-                        // }
                     }
                 }
             }
