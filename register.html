@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Login form</title>
+    <link rel="stylesheet" href=" {% static 'DjangoNote/style.css' %} ">
+    <style>
+        .box {
+            width: 400px;
+            padding: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #333;
+            text-align: center;
+        }
+
+        .box input[type="submit"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+            border: 2px solid #2ecc71;
+            padding: 15px 50px;
+            outline: none;
+            color: whitesmoke;
+            /* border-radius: 30px; */
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        .box input[type="text"],
+        .box input[type="password"] {
+            border-radius: 0;
+            background: none;
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding: 18px 80px;
+            outline: none;
+            border-radius: 40px;
+            transition: 0.25s;
+        }
+
+        @media screen and (max-width: 800px) {
+            .box {
+                width: 300px;
+                padding: 30px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #333;
+                text-align: center;
+            }
+
+            .box input[type="submit"] {
+                border: 0;
+                background: none;
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+                border: 2px solid #2ecc71;
+                padding: 12px 35px;
+                outline: none;
+                color: whitesmoke;
+                /* border-radius: 30px; */
+                transition: 0.25s;
+                cursor: pointer;
+            }
+
+            .box input[type="text"],
+            .box input[type="password"] {
+                border-radius: 0;
+                background: none;
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+                border: 1x solid l#3498db;
+                padding: 10px 60px;
+                width: 100px;
+                outline: none;
+                border-radius: 20px;
+                transition: 0.25s;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .box {
+                width: 220px;
+                padding: 30px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #333;
+                text-align: center;
+            }
+
+            .box input[type="submit"] {
+                border: 0;
+                background: none;
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+                border: 2px solid #2ecc71;
+                padding: 10px 30px;
+                outline: none;
+                color: whitesmoke;
+                border-radius: 20px;
+                transition: 0.25s;
+                cursor: pointer;
+            }
+
+            .box input[type="text"],
+            .box input[type="password"] {
+                border-radius: 0;
+                background: none;
+                display: block;
+                margin: 10px auto;
+                text-align: center;
+                border: 1x solid #3498db;
+                padding: 10px 30px;
+                width: 100px;
+                outline: none;
+                border-radius: 20px;
+                transition: 0.25s;
+            }
+
+        }
+    </style>
+</head>
+
+<script>
+    alert('Register berhasil');
+    window.location.replace('login.php');
+</script>
+<script>
+    alert('Password yang dimasukkan tidak sama')
+</script>";
+<script>
+    alert('User sudah terdaftar')
+</script>";
+
+
+<body>
+    <div class="box">
+
+        <form method="post">
+            <h1>Register</h1>
+            <input type="text" name="username" placeholder="Username" required maxlength="100">
+            <input type="password" name="password1" placeholder="Password" required maxlength="100">
+            <input type="password" name="password2" placeholder="Confirm Password" required maxlength="100">
+            <p style="color: white;">
+            </p>
+            <input name="register" type="submit" value="Register">
+        </form>
+        <form action="login.php" method="post">
+            <input type="submit" style="border: 2px solid lightslategray;" value="Login">
+        </form>
+    </div>
+</body>
+
+</html>
